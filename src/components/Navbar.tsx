@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { ShoppingBag, Menu, X, Terminal, Radio } from 'lucide-react';
 import { useCartStore } from '@/store/useCartStore';
+import { ZenjiLogo } from '@/components/ZenjiLogo';
 
 interface NavbarProps {
   onCategorySelect?: (categoryId: string) => void;
@@ -21,11 +22,12 @@ export function Navbar({ onCategorySelect }: NavbarProps) {
   }, []);
 
   const navLinks = [
-    { label: 'SHOP ALL', href: '#catalog', categoryId: 'all', badge: '06' },
+    { label: 'SHOP ALL', href: '#catalog', categoryId: 'all', badge: '08' },
     { label: 'DROP 001', href: '#drop-001', categoryId: 'all', badge: 'LIVE' },
+    { label: 'TEES', href: '#catalog', categoryId: 'tees' },
     { label: 'HOODIES', href: '#catalog', categoryId: 'hoodies' },
-    { label: 'HEAVY TEES', href: '#catalog', categoryId: 'tees' },
-    { label: 'ABOUT ARCHIVE', href: '#archive' },
+    { label: 'LOOKBOOK', href: '#lookbook' },
+    { label: 'OUR STORY', href: '#our-story' },
   ];
 
   const handleNavClick = (categoryId?: string) => {
@@ -37,43 +39,28 @@ export function Navbar({ onCategorySelect }: NavbarProps) {
 
   return (
     <header className="sticky top-0 z-40 w-full border-b border-border/80 bg-obsidian/85 backdrop-blur-md transition-all">
-      {/* Top micro-bar */}
+      {/* Top telemetry micro-bar */}
       <div className="hidden lg:flex items-center justify-between px-6 py-1 text-[11px] font-mono text-cyber-muted border-b border-border/40 bg-charcoal/40">
         <div className="flex items-center gap-2">
           <Terminal className="w-3 h-3 text-crimson" />
-          <span>ZENJI SYSTEM V2.6 // CYBERPUNK ARCHIVE</span>
+          <span>ZENJI ARCHIVE SYSTEM // TOKYO & AUSTRALIA</span>
         </div>
         <div className="flex items-center gap-4">
           <span className="text-cyber-gray">LOCATION: NEO-TOKYO // GLOBAL</span>
           <span className="text-gold flex items-center gap-1">
             <span className="w-1.5 h-1.5 rounded-full bg-gold animate-pulse" />
-            SERVER SECURE
+            NO RESTOCKS. EVER.
           </span>
         </div>
       </div>
 
       {/* Main Navbar */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 md:h-20 flex items-center justify-between">
-        {/* Left: Kanji Brand Badge + Bold Logo */}
-        <div className="flex items-center gap-3 md:gap-4">
-          <Link href="/" className="group flex items-center gap-3">
-            {/* Kanji Emblem */}
-            <div className="w-9 h-9 md:w-11 md:h-11 bg-charcoal border border-border group-hover:border-crimson group-hover:shadow-neon-crimson transition-all duration-300 flex items-center justify-center relative overflow-hidden">
-              <span className="font-japanese font-black text-lg md:text-xl text-cyber-white group-hover:text-crimson transition-colors">
-                禅
-              </span>
-              <div className="absolute top-0 right-0 w-2 h-2 bg-crimson/80" />
-            </div>
-
-            {/* Brand Wordmark */}
-            <div className="flex flex-col">
-              <span className="font-heading font-black tracking-widest text-xl md:text-2xl text-cyber-white group-hover:text-crimson transition-colors">
-                ZENJI
-              </span>
-              <span className="font-mono text-[9px] tracking-cyber text-cyber-muted -mt-1 group-hover:text-cyber-gray">
-                ゼンジ // ARCHIVE
-              </span>
-            </div>
+        
+        {/* Left: Official ZENJI Logo Branding */}
+        <div className="flex items-center">
+          <Link href="/" className="group flex items-center">
+            <ZenjiLogo variant="combined" />
           </Link>
         </div>
 
@@ -84,7 +71,7 @@ export function Navbar({ onCategorySelect }: NavbarProps) {
               key={link.label}
               href={link.href}
               onClick={() => handleNavClick(link.categoryId)}
-              className="relative px-3 py-2 text-xs lg:text-sm font-mono tracking-wider text-cyber-gray hover:text-cyber-white hover:bg-charcoal/80 border border-transparent hover:border-border transition-all duration-200 group"
+              className="relative px-3 py-2 text-xs lg:text-sm font-mono tracking-wider text-cyber-gray hover:text-cyber-white hover:bg-charcoal/80 border border-transparent hover:border-border transition-all duration-200"
             >
               <span className="flex items-center gap-1.5">
                 {link.label}
@@ -92,7 +79,7 @@ export function Navbar({ onCategorySelect }: NavbarProps) {
                   <span
                     className={`text-[9px] px-1.5 py-0.2 border ${
                       link.badge === 'LIVE'
-                        ? 'border-crimson/50 text-crimson bg-crimson/10'
+                        ? 'border-crimson/50 text-crimson bg-crimson/10 shadow-neon-crimson'
                         : 'border-border text-cyber-muted'
                     }`}
                   >
@@ -125,7 +112,6 @@ export function Navbar({ onCategorySelect }: NavbarProps) {
               BAG
             </span>
 
-            {/* Live Badge Counter */}
             <span
               className={`min-w-[20px] h-5 px-1.5 flex items-center justify-center font-mono text-[11px] font-bold rounded-none transition-all ${
                 itemCount > 0
@@ -171,11 +157,6 @@ export function Navbar({ onCategorySelect }: NavbarProps) {
                 )}
               </a>
             ))}
-          </div>
-
-          <div className="pt-3 border-t border-border/50 flex items-center justify-between font-mono text-xs text-cyber-muted">
-            <span>WORLDWIDE EXPRESS DISPATCH</span>
-            <span className="text-gold">100% AUTHENTIC</span>
           </div>
         </div>
       )}

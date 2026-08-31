@@ -20,6 +20,7 @@ import {
 } from 'lucide-react';
 import { useCartStore } from '@/store/useCartStore';
 import { formatPrice } from '@/lib/utils';
+import { ZenjiLogo } from '@/components/ZenjiLogo';
 
 export function CartDrawer() {
   const [mounted, setMounted] = useState(false);
@@ -153,9 +154,7 @@ export function CartDrawer() {
                 {/* 1. Header with Live Count and Close Button */}
                 <div className="p-4 sm:p-5 border-b border-border bg-obsidian flex items-center justify-between">
                   <div className="flex items-center gap-3">
-                    <div className="w-8 h-8 bg-charcoal border border-crimson shadow-neon-crimson flex items-center justify-center">
-                      <span className="font-japanese font-black text-sm text-cyber-white">禅</span>
-                    </div>
+                    <ZenjiLogo variant="icon" size="md" glow={true} />
                     <div>
                       <h2 className="font-heading font-black text-sm sm:text-base tracking-wider text-cyber-white flex items-center gap-2">
                         BAG TELEMETRY

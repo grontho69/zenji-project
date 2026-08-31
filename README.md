@@ -90,7 +90,7 @@ A high-end, cyberpunk/anime-inspired streetwear e-commerce web application engin
    ```
 
 4. **Open in browser**:
-   Navigate to [http://localhost:3000](http://localhost:3000)
+   live URL
 
 ### Production Build & Typecheck
 
